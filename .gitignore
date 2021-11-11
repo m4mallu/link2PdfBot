@@ -1,0 +1,6 @@
+venv
+__pycache__
+config.py
+.idea
+img
+link2PdfBot.session

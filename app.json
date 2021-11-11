@@ -1,0 +1,25 @@
+{
+  "name": "Link2PdfBot",
+  "description": "pdf converter bot from http links. Make your forks now",
+  "keywords": ["telegram", "link2pdf", "converter", "robot"],
+  "logo": "https://telegra.ph/file/60706bd59c0829ed2f76f.jpg",
+  "website": "https://github.com/m4mallu/link2PdfBot",
+  "repository": "https://github.com/m4mallu/link2PdfBot",
+  "env": {
+        "APP_ID": {"description": "Get this value from https://my.telegram.org", "required": true},
+        "API_HASH": {"description": "Get this value from https://my.telegram.org" , "required": true},
+        "TG_BOT_TOKEN": {"description": "Get Bot Token From @BotFather Bot", "required": true},
+        "ENV": {"description": "Set this to ANYTHING","value": "ANYTHING"}
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  }
+}
