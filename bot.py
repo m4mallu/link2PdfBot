@@ -70,9 +70,8 @@ async def link_extract(self, m: Message):
         # extracting the title frm the link
         for title in soup.find_all('title'):
             file_name = str(title.get_text()) + '.pdf'
-        # Creating the pdf with file name as title
-        pdf = weasyprint.HTML(m.text).write_pdf()
-        open(file_name, 'wb').write(pdf)
+        # Creating the pdf file
+        weasyprint.HTML(m.text).write_pdf(file_name)
     except Exception:
         await msg.edit_text(
             Presets.ERROR_TXT,
@@ -82,10 +81,16 @@ async def link_extract(self, m: Message):
         )
         return
     await msg.edit(Presets.UPLOAD_TXT)
+    await self.send_chat_action(m.chat.id, "upload_document")
     await m.reply_document(
         document=file_name,
         caption=Presets.CAPTION_TXT.format(file_name),
         thumb=thumbnail
+    )
+    print(
+        '@' + m.from_user.username if m.from_user.username else m.from_user.first_name,
+        "has downloaded the file",
+        file_name
     )
     try:
         os.remove(file_name)
