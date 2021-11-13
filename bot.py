@@ -80,7 +80,10 @@ async def link_extract(self, m: Message):
             )
         )
         return
-    await msg.edit(Presets.UPLOAD_TXT)
+    try:
+        await msg.edit(Presets.UPLOAD_TXT)
+    except Exception:
+        pass
     await self.send_chat_action(m.chat.id, "upload_document")
     await m.reply_document(
         document=file_name,
